@@ -1,6 +1,8 @@
 import express from 'express';
-import routesEmployee from './routes/employee';
-import routesLogin from './routes/Login'
+import routesEmployee from './routes/employee'
+import routesLogin from './routes/login';
+import routesProduct from './routes/product';
+import routesSupplier from './routes/supllier'
 import cors from 'cors';
 
 const app = express();
@@ -10,8 +12,10 @@ app.use(express.json());
 
 app.use(routesEmployee);
 app.use(routesLogin);
+app.use(routesProduct);
+app.use(routesSupplier);
 
-//app.use(express.json())
+app.use(express.json())
 
 export default app;
 
