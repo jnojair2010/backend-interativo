@@ -1,39 +1,63 @@
-import { Login } from '../login'
-import { Company } from '../company'
-import { User } from '../user'
-import { Address } from '../address'
+import DaoEmployee from '../../repository/dao-employee';
+import User from '../user';
 
-class Employee implements Address, Company, Login, User{
-    id_user!: string
-    userName!: string
-    userSobreNome!: string
-    cpf!: string | undefined
-    endereco!: Address | undefined
-    id!: string
-    login!: string
-    password!: string
 
-    id_company!: string
-    name!: string
-    cnpj!: string
+class Employee extends User{
 
-    id_Address!: string
-    logradouro!: string
-    cep!: string
-    bairro!: string
-    cidade!: string
-    uf!: string
-    complemento!: string
+    private login!:string; 
+    private password!:string;
+    private atribuicao!:string;
+    private situacao!:string;
+    private estadoDeLogin!:boolean;
 
-    getEmployeeUser(){
-
-    }
-    getEmployeeLogin(){
-
-    }
-    getEmployeeEndereco(){
-        
+    constructor(login:string, password:string, atribuicao:string, estadoDeLogin:boolean,nome:string, sobrenome:string, email:string, cpf:string, logradouro:string, numero:string, bairro:string, cidade:string, uf:string, complemento:string){
+        super(nome, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento)
+        this.estadoDeLogin = estadoDeLogin;
+        this.login = login;
+        this. password = password;
+        this.atribuicao = atribuicao;
     }
     
+    get getEstadoDeLogin(){
+        return this.estadoDeLogin;
+    }
+    get getLogin(){
+        return this.login;
+    }
+    get getPassword(){
+        return this.password
+    }
+    get getAtribuicao(){
+        return this.atribuicao
+    }
+    get getSituacao(){
+        return this.situacao;
+    }
+    set setEstadoDeLogin(estadoDeLogin:boolean){
+        this.estadoDeLogin = estadoDeLogin;
+    }
+    set setLogin(login:string){
+        this.login = login;
+    }
+    set setPassword(password:string){
+        this.password = password;
+    }
+    set setAtribuicao(atribuicao:string){
+        this.atribuicao = atribuicao;
+    }
+    set setSituacao(situacao:string){
+        this.situacao = situacao;
+    }
+
+    getEmployee():Employee{
+
+       const newDaoEmployee = new DaoEmployee();
+
+      const employee:Employee =  newDaoEmployee.getDaoEmployee();
+
+        return employee;
+    }
+
 
 }
+export default  Employee;
