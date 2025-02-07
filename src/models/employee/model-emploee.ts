@@ -3,14 +3,37 @@ import { Company } from '../company'
 import { User } from '../user'
 import { Address } from '../address'
 
-interface Employee{
-    user:User
-    login:Login,
-    company:Company,
-    address:Address
-    function_company:string,
-    estado:boolean,
-    data_adminssion:string,
-    data_demission:string
+class Employee implements Address, Company, Login, User{
+    id_user!: string
+    userName!: string
+    userSobreNome!: string
+    cpf!: string | undefined
+    endereco!: Address | undefined
+    id!: string
+    login!: string
+    password!: string
+
+    id_company!: string
+    name!: string
+    cnpj!: string
+
+    id_Address!: string
+    logradouro!: string
+    cep!: string
+    bairro!: string
+    cidade!: string
+    uf!: string
+    complemento!: string
+
+    getEmployeeUser(){
+
+    }
+    getEmployeeLogin(){
+
+    }
+    getEmployeeEndereco(){
+        
+    }
+    
 
 }

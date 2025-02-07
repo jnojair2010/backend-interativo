@@ -1,8 +1,9 @@
 import { Address } from "./address";
 
 export interface User{
-    name:string,
-    sobreNome:string,
+    id_user:string
+    userName:string,
+    userSobreNome:string,
     cpf?:string,
     endereco?:Address
 }
