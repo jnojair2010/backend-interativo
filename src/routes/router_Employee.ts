@@ -1,9 +1,13 @@
 import { Router } from "express";
-
+import Employee from '../models/employee/model-emploee';
 const routes = Router();
 
 routes.get('/employee',(req, res)=>{
-    res.send("entrou no get employee")
+    const employee = Employee.prototype.getEmployee();
+    employee.then((functionario)=>{
+        res.send(functionario);
+    })
+   
 })
 routes.post('/createEmployee', (res, req)=>{
 

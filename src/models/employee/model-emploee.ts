@@ -49,13 +49,20 @@ class Employee extends User{
         this.situacao = situacao;
     }
 
-    getEmployee():Employee{
-
-       const newDaoEmployee = new DaoEmployee();
-
-      const employee:Employee =  newDaoEmployee.getDaoEmployee();
-
-        return employee;
+    async getEmployee(){
+        try{
+            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair2010@gmail.com","Lwx5nk@Lwx5nk");
+            
+            let functionario = await employee.then((response)=>{
+                return response;
+            })
+            return functionario;
+        }catch(error){
+            console.log(` entrou no erro: ${error}`)
+        }finally{
+            console.log(` entrou no erro: finally`)
+        }
+        
     }
 
 
