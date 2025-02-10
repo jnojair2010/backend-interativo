@@ -1,5 +1,9 @@
 import app from "./app";
+import cors from 'cors';
 
-app.listen(4000, ()=>{
-    console.log(` app runing port 4000`)
+const PORT =  process.env.PORT || 3000
+
+app.listen(PORT, ()=>{
+    console.log(` Servidor rodando na porta: ${PORT}`);
+
 })
