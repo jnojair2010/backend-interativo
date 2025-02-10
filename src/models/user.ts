@@ -7,8 +7,8 @@ class User extends Address{
     private email:string;
     private cpf:string;
 
-    constructor(userId:string, name:string, sobreName:string, email:string, cpf:string, logradouro:string, numero:string, bairro:string, cidade:string, uf:string, complemento:string){
-        super(logradouro, numero, bairro, cidade, uf, complemento);
+    constructor(idAddress:string, userId:string, name:string, sobreName:string, email:string, cpf:string, logradouro:string, numero:string, bairro:string, cidade:string, uf:string, complemento:string){
+        super(idAddress,logradouro, numero, bairro, cidade, uf, complemento);
         this.userId = userId;
         this.userName = name;
         this.userSobreName = sobreName;

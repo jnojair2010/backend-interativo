@@ -1,20 +1,24 @@
 class Address{
-   private logradouro!:string;
-   private numero!:string;
-   private bairro!:string;
-   private cidade!:string;
-   private uf!:string;
-   private complemento!:string;
+    private idAddres:string;
+    private logradouro:string;
+    private numero:string;
+    private bairro:string;
+    private cidade:string;
+    private uf:string;
+    private complemento:string;
 
-   constructor(logradouro:string, numero:string, bairro:string, cidade:string, uf:string, complemento:string){
-       this.logradouro = logradouro;
-       this.numero = numero;
-       this.bairro = bairro;
-       this.cidade = cidade;
-       this.uf = uf;
-       this.complemento = complemento;
+   constructor( idAddress:string,logradouro:string, numero:string, bairro:string, cidade:string, uf:string, complemento:string){
+        this.idAddres = idAddress;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.complemento = complemento;
    }
-
+        get getIdAddress(){
+            return this.idAddres;
+        }
        get getLogradouro(){
            return this.logradouro;
        }
@@ -34,6 +38,9 @@ class Address{
            return this.complemento;
        }
 
+       set setIdAdress(id:string){
+        this.idAddres = id;
+       }
        set setLogradouro(logradouro:string){
            this.logradouro = logradouro;
        }
