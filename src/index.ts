@@ -1,9 +1,3 @@
-const projetoBackEnd: {
-    professor:string,
-    escola:string
-} = {
-    professor : "jair de Oliveira de Oliveira",
-    escola : " Mauricio de Nassau"
-}
-
-console.log(projetoBackEnd)
+import express from 'express';
+import bodyParser from 'body-parser';
+//import {validatte} from 'express-va'
