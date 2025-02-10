@@ -1,46 +1,71 @@
 import DaoEmployee from '../../repository/dao-employee';
+import Login from '../login';
 import User from '../user';
 
 
 class Employee extends User{
 
-    private login!:string; 
-    private password!:string;
     private atribuicao!:string;
     private situacao!:string;
     private estadoDeLogin!:boolean;
 
-    constructor(login:string, password:string, atribuicao:string, estadoDeLogin:boolean,nome:string, sobrenome:string, email:string, cpf:string, logradouro:string, numero:string, bairro:string, cidade:string, uf:string, complemento:string){
-        super(nome, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento)
+     mLogin = new Login("","","")
+
+    constructor(
+        login:string,
+        password:string,
+        atribuicao:string,
+        estadoDeLogin:boolean,
+        nome:string,
+        sobrenome:string,
+        email:string,
+        cpf:string,
+        logradouro:string,
+        numero:string,
+        bairro:string,
+        cidade:string,
+        uf:string,
+        complemento:string){
+        super( nome, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento)
         this.estadoDeLogin = estadoDeLogin;
-        this.login = login;
-        this. password = password;
         this.atribuicao = atribuicao;
     }
     
     get getEstadoDeLogin(){
         return this.estadoDeLogin;
     }
-    get getLogin(){
-        return this.login;
-    }
-    get getPassword(){
-        return this.password
-    }
+
     get getAtribuicao(){
         return this.atribuicao
     }
     get getSituacao(){
         return this.situacao;
     }
-    set setEstadoDeLogin(estadoDeLogin:boolean){
-        this.estadoDeLogin = estadoDeLogin;
+
+
+    get getLogin(){
+        return this.mLogin.getIdLogin;
+    }
+    get getPassword(){
+        return this.mLogin.getPassowrd;
+    }
+    get getIdLogin(){
+        return this.mLogin.getIdLogin;
     }
     set setLogin(login:string){
-        this.login = login;
+        this.mLogin.setLogin = login;
     }
     set setPassword(password:string){
-        this.password = password;
+        this.mLogin.setPassword = password;
+    }
+    set setIdLogin(id_login:string){
+        this.mLogin.setILogin = id_login;
+    }
+
+
+
+    set setEstadoDeLogin(estadoDeLogin:boolean){
+        this.estadoDeLogin = estadoDeLogin;
     }
     set setAtribuicao(atribuicao:string){
         this.atribuicao = atribuicao;
@@ -48,6 +73,8 @@ class Employee extends User{
     set setSituacao(situacao:string){
         this.situacao = situacao;
     }
+
+    
 
     async getEmployee(){
         try{
