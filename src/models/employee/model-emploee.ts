@@ -21,6 +21,7 @@ class Employee extends User{
         sobrenome:string,
         email:string,
         cpf:string,
+        idAddress:string,
         logradouro:string,
         numero:string,
         bairro:string,
@@ -28,7 +29,7 @@ class Employee extends User{
         uf:string,
         complemento:string){
 
-        super(userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
+        super(idAddress, userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
         this.estadoDeLogin = estadoDeLogin;
         this.atribuicao = atribuicao;
     }
@@ -80,7 +81,7 @@ class Employee extends User{
 
     async getEmployee(){
         try{
-            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair2010@gmail.com","Lwx5nk@Lwx5nk");
+            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair","Lwx5nk@Lwx5nk");
             
             let functionario = await employee.then((response)=>{
                 return response;

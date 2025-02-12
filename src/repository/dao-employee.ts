@@ -11,7 +11,7 @@ class DaoEmployee{
 
         try{
             conn = await pool.getConnection();
-            let row = await conn.query('SELECT * FROM USER WHERE EMAIL=?',[login])
+            let row = await conn.query('SELECT * FROM login WHERE login=? and password=?',[login, password])
             .then((response)=>{
                 return response;
             })
