@@ -18,7 +18,7 @@ class Employee extends User{
         estadoDeLogin:boolean,
         codeJwt:string,
         atribuicao:string,
-        userId:Number,
+        userId:string,
         userName:string,
         sobrenome:string,
         email:string,
