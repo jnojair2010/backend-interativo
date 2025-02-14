@@ -5,18 +5,20 @@ import User from '../user';
 
 class Employee extends User{
 
-    private atribuicao!:string;
-    private situacao!:string;
-    private estadoDeLogin!:boolean;
+    private atribuicao:string;
+    private situacao:string;
+    private estadoDeLogin:boolean;
+    private codeJwt:string;
 
      mLogin = new Login("","","")
 
     constructor(
-        login:string,
-        password:string,
-        atribuicao:string,
+        situacao:string,
+        idAddress:string,
         estadoDeLogin:boolean,
-        userId:string,
+        codeJwt:string,
+        atribuicao:string,
+        userId:Number,
         userName:string,
         sobrenome:string,
         email:string,
@@ -27,10 +29,11 @@ class Employee extends User{
         cidade:string,
         uf:string,
         complemento:string){
-
-        super(userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
-        this.estadoDeLogin = estadoDeLogin;
-        this.atribuicao = atribuicao;
+            super(idAddress,userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
+            this.codeJwt = codeJwt;
+            this.situacao = situacao;
+            this.estadoDeLogin = estadoDeLogin;
+            this.atribuicao = atribuicao;
     }
     
     get getEstadoDeLogin(){
@@ -79,6 +82,9 @@ class Employee extends User{
     
 
     async getEmployee(){
+
+        
+
         try{
             const employee = DaoEmployee.prototype.getDaoEmployee("jnojair2010@gmail.com","Lwx5nk@Lwx5nk");
             
