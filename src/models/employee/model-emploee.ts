@@ -29,11 +29,12 @@ class Employee extends User{
         cidade:string,
         uf:string,
         complemento:string){
-            super(idAddress,userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
-            this.codeJwt = codeJwt;
-            this.situacao = situacao;
-            this.estadoDeLogin = estadoDeLogin;
-            this.atribuicao = atribuicao;
+
+        super(idAddress, userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
+        this.codeJwt = codeJwt;
+        this.situacao = situacao;
+        this.estadoDeLogin = estadoDeLogin;
+        this.atribuicao = atribuicao;
     }
     
     get getEstadoDeLogin(){
@@ -86,7 +87,7 @@ class Employee extends User{
         
 
         try{
-            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair2010@gmail.com","Lwx5nk@Lwx5nk");
+            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair","Lwx5nk@Lwx5nk");
             
             let functionario = await employee.then((response)=>{
                 return response;
