@@ -1,12 +1,17 @@
 import { Router } from "express";
+import Employee from "../models/employee/model-emploee";
 
 const routesLogin = Router();
 
 routesLogin.get('/login',(req, res)=>{
    
-    res.send(` entrou no login `)
+   
 })
-routesLogin.post('/createLogin', (res, req)=>{
+routesLogin.post('/login', (req, res)=>{
+    const employee = Employee.prototype.getEmployee();
+    employee.then((functionario)=>{
+        res.send(functionario);
+    })
 
 })
 routesLogin.delete('deleteLogin', (req, res)=>{

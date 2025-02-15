@@ -1,7 +1,7 @@
 import DaoEmployee from '../../repository/dao-employee';
 import Login from '../login';
 import User from '../user';
-
+import ServerEmployee from '../../servicos/serverEmpoyee'
 
 class Employee extends User{
 
@@ -83,14 +83,14 @@ class Employee extends User{
     
 
     async getEmployee(){
-
-        
-
         try{
-            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair","Lwx5nk@Lwx5nk");
+            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair2010@gmail.com","Lwx5nk@");
             
             let functionario = await employee.then((response)=>{
-                return response;
+
+              const token =  ServerEmployee.prototype.getGerarjwt(response['userId'])
+               
+              return token;
             })
             return functionario;
         }catch(error){

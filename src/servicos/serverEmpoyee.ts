@@ -1,4 +1,5 @@
 import Employee from "../models/employee/model-emploee";
+import {createToken} from '../utill/manage_jwt'
 
 class ServerEmployee{
 
@@ -6,7 +7,7 @@ class ServerEmployee{
 
 
     getGerarjwt(userId:number){
-        
+       return createToken(userId);
     }
 
 
