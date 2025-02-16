@@ -84,14 +84,21 @@ class Employee extends User{
 
     async getEmployee(){
         try{
-            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair2010@gmail.com","Lwx5nk@");
+            const employee = DaoEmployee.prototype.getLogin("jnojair2010@gmail.com","Lwx5nk@");
             
-            let functionario = await employee.then((response)=>{
+            let login = await employee.then(async (response)=>{
+                let token
 
-              const token =  ServerEmployee.prototype.getGerarjwt(response['userId'])
+                let employee = await DaoEmployee.prototype.getEmployeeForLogin(response['userId'])
+                    .then((response)=>{
+                        console.log(response['situation']);
+                        if(response['situation']===0) token = false;
+                        if(response['situation']===1) token = ServerEmployee.prototype.getGerarjwt(response['userId']);
+                        
+                    })
               return {token};
             })
-            return functionario;
+            return login;
         }catch(error){
             console.log(` entrou no erro: ${error}`)
         }finally{
