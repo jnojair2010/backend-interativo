@@ -7,7 +7,8 @@ class ServerEmployee{
 
 
     getGerarjwt(userId:number){
-       return createToken(userId);
+        let token = createToken(userId)
+       return token;
     }
 
 

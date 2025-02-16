@@ -5,10 +5,12 @@ import routesLogin from './routes/router_Login';
 import routesProduct from './routes/product';
 import routesSupplier from './routes/supllier'
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json())
 
 
 app.use(routesEmployee);

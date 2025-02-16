@@ -5,20 +5,30 @@ import exp from 'constants';
 import { verify } from 'crypto';
 import { json } from 'stream/consumers';
 
+const secret = "JNOJAIR";
 
 export const createToken = (id:number)=>{
     const payload = {userId:id};
-    const secret = "JNOJAIR";
     const options = {expiresIn:300};
     const token = jwt.sign(payload,secret,options);
-
-    decodeToken(token);
-
     return token;
 }
 
 export const decodeToken = (codeJwt:string)=>{
     const decode = jwtDecode<JwtPayload>(codeJwt)
-      console.log(decode['userId']);
-      console.log(decode.exp)
+        let userId = decode['userId'];
+       // console.log(userId)
+      return userId;
+
+}
+
+export const verifyToken = (codeJwt:string)=>{
+    let userId;
+    let statusSecret = jwt.verify(codeJwt,secret,  (err, decoded)=>{
+        userId = decodeToken(codeJwt);
+        if(decoded) decoded;
+
+    })
+    return userId;
+
 }

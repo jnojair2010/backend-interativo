@@ -89,8 +89,7 @@ class Employee extends User{
             let functionario = await employee.then((response)=>{
 
               const token =  ServerEmployee.prototype.getGerarjwt(response['userId'])
-               
-              return token;
+              return {token};
             })
             return functionario;
         }catch(error){
