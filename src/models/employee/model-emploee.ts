@@ -82,9 +82,9 @@ class Employee extends User{
 
     
 
-    async getEmployee(){
+    async getEmployee(loginIn:string, passwordReq:string){
         try{
-            const employee = DaoEmployee.prototype.getLogin("jnojair2010@gmail.com","Lwx5nk@");
+            const employee = DaoEmployee.prototype.getLogin(loginIn, passwordReq);
             
             let login = await employee.then(async (response)=>{
                 let token
