@@ -2,7 +2,7 @@ import express from 'express';
 
 import routesEmployee from './routes/router_Employee'
 import routesLogin from './routes/router_Login';
-import routesProduct from './routes/product';
+import routesProduct from './routes/router_Product';
 import routesSupplier from './routes/supllier'
 import cors from 'cors';
 import bodyParser from 'body-parser';
