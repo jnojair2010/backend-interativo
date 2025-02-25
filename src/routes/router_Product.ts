@@ -12,10 +12,10 @@ routes.post('/getAllproducto', validationGetAllProduto, (req, res)=>{
     const getAllproducto = daoProduto.prototype.getAllProduto();
 
     getAllproducto.then((listProdutos)=>{
-        console.log(JSON.stringify(listProdutos))
+
+        res.send(listProdutos[0]);
     })
 
-    res.send("get todos os produtos")
 });
 routes.post('cadProduct', (req, res)=>{
 
