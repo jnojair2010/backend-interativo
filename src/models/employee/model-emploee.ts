@@ -96,6 +96,7 @@ class Employee extends User{
                         if(response['situation']===1) token = ServerEmployee.prototype.getGerarjwt(response['userId']);
                         
                     })
+                    console.log(`O token é: ${token}`);
               return {token};
             })
             return login;

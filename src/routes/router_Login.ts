@@ -16,14 +16,17 @@ routesLogin.get('/login',(req, res)=>{
 routesLogin.post('/login',validationLogin, (req:Request, res:Response)=>{
         const loginIn:string = req.body.email;
         const password:string = req.body.password;
-
+    console.log(`o login é: ${loginIn}`);
+    console.log(`o login é: ${password}`);
       
 
     const employee = Employee.prototype.getEmployee(loginIn, password);
     employee.then((Token)=>{
+        console.log(Token);
         if(Token?.token === false){
             res.status(401).end();
         } else{
+            
             res.send({"jwt_token":Token?.token});
         }
     })
