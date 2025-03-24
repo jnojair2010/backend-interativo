@@ -7,17 +7,24 @@ import PostResponse from '../dtos/post.Reponse.login'
 //utill
 import { validationLogin } from "../utill/validatioLogin";
 import { verifyToken } from "../utill/manage_jwt";
+import { validationUser } from "../utill/validationUser";
 
 const routesLogin = Router();
 
-routesLogin.get('/login',(req, res)=>{
+routesLogin.get('/getUserSystema',validationUser,(req:Request, res:Response)=>{
+    const jwt_token = JSON.stringify(req.headers.authorization);
+    let id = verifyToken(jwt_token);
+    const employee = Employee.prototype.getEmployeeId(Number(id));
+        employee.then((response)=>{
+            res.send(response)
+        })
    
 })
+
+
 routesLogin.post('/login',validationLogin, (req:Request, res:Response)=>{
         const loginIn:string = req.body.email;
         const password:string = req.body.password;
-
-      
 
     const employee = Employee.prototype.getEmployee(loginIn, password);
     employee.then((Token)=>{

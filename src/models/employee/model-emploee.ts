@@ -106,6 +106,29 @@ class Employee extends User{
         }
         
     }
+    async getEmployeeId(id:number){
+            try{
+                const employee = DaoEmployee.prototype.getEmployeeForLogin(id);
+                let login = await employee.then(async (response)=>{
+                    return response;
+                    
+                        /*  let employee = await DaoEmployee.prototype.getEmployeeForLogin(response['userId'])
+                                .then((response)=>{
+                                    console.log(response['situation']);
+                                    if(response['situation']===0) token = false;
+                                    if(response['situation']===1) token = ServerEmployee.prototype.getGerarjwt(response['userId']);
+                                    
+                                })
+                        return {token};*/
+                })
+                return login;
+            }
+        catch(error){
+            console.log(` entrou no erro: ${error}`)
+        }finally{
+            console.log(` entrou no erro: finally`)
+        }
+    }
 
 
 }

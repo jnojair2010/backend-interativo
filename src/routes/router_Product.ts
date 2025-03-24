@@ -13,7 +13,7 @@ routes.post('/getAllproducto', validationGetAllProduto, (req, res)=>{
 
     getAllproducto.then((listProdutos)=>{
 
-        res.send(listProdutos[0]);
+        res.send(listProdutos);
     })
 
 });

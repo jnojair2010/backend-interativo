@@ -1,12 +1,12 @@
 import mariadb from 'mariadb';
 import 'dotenv/config';
 
-const pool = mariadb.createPool({
+ const  pool = mariadb.createPool({
 
     host:"localhost",
     user:"root",
     password:"Lwx5nk@Lwx5nk",
     database:process.env.DATABASE,
-    connectionLimit:10
+    connectionLimit:3
 })
 export default pool;

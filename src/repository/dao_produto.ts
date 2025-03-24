@@ -1,15 +1,18 @@
+
 import pool from './databse';
 
 class daoProduto{
 
+
     async getAllProduto(){
-        let conn;
+        const conn = await pool.getConnection();
 
         try{
-            conn = await pool.getConnection();
-            let rows = await conn.query("select * from producto",[])
+
+            
+
+            let rows = await  conn.query("select * from producto",[])
             .then((response)=>{
-                console.log(response)
                 return response;
             })
             .then((respon)=>{
@@ -22,6 +25,7 @@ class daoProduto{
             console.log(` error: ${error}`)
         }finally{
             console.log("entrou no finaly do getAllProduto")
+            conn.end()
         }
 
     }
