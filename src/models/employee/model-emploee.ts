@@ -91,7 +91,6 @@ class Employee extends User{
 
                 let employee = await DaoEmployee.prototype.getEmployeeForLogin(response['userId'])
                     .then((response)=>{
-                        console.log(response['situation']);
                         if(response['situation']===0) token = false;
                         if(response['situation']===1) token = ServerEmployee.prototype.getGerarjwt(response['userId']);
                         
@@ -107,21 +106,14 @@ class Employee extends User{
         
     }
     async getEmployeeId(id:number){
+        console.log("getEmployeeId e: "+id)
             try{
-                const employee = DaoEmployee.prototype.getEmployeeForLogin(id);
-                let login = await employee.then(async (response)=>{
+             const employee =  DaoEmployee.prototype.getUserSystema(id);
+                let user = await employee.then((response)=>{
+                
                     return response;
-                    
-                        /*  let employee = await DaoEmployee.prototype.getEmployeeForLogin(response['userId'])
-                                .then((response)=>{
-                                    console.log(response['situation']);
-                                    if(response['situation']===0) token = false;
-                                    if(response['situation']===1) token = ServerEmployee.prototype.getGerarjwt(response['userId']);
-                                    
-                                })
-                        return {token};*/
                 })
-                return login;
+                return employee;
             }
         catch(error){
             console.log(` entrou no erro: ${error}`)

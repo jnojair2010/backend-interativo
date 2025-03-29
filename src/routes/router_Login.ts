@@ -11,11 +11,12 @@ import { validationUser } from "../utill/validationUser";
 
 const routesLogin = Router();
 
-routesLogin.get('/getUserSystema',validationUser,(req:Request, res:Response)=>{
+routesLogin.get('/getUserSystema',validationUser,async (req:Request, res:Response)=>{
     const jwt_token = JSON.stringify(req.headers.authorization);
-    let id = verifyToken(jwt_token);
-    const employee = Employee.prototype.getEmployeeId(Number(id));
+    let id = await verifyToken(jwt_token);
+   const employee = Employee.prototype.getEmployeeId(Number(id));
         employee.then((response)=>{
+            console.log(response);
             res.send(response)
         })
    

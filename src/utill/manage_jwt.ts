@@ -35,7 +35,7 @@ export const verifyToken = (codeJwt:string)=>{
         })
     }
     catch(error){
-        console.log("entrou no erro do verificar jwt_token")
+        console.log("entrou no erro do verificar jwt_token"+error)
     }
     
     return userId;
