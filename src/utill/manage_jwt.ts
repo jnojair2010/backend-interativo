@@ -17,7 +17,6 @@ export const createToken = (id:number)=>{
 export const decodeToken = (codeJwt:string)=>{
     const decode = jwtDecode<JwtPayload>(codeJwt)
         let userId = decode['userId'];
-       // console.log(userId)
       return userId;
 
 }

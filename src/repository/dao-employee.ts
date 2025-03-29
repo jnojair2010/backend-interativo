@@ -8,9 +8,10 @@ class DaoEmployee{
     async getLogin(login:string, password:string){
 
         let conn;
+        conn = await pool.getConnection();
 
         try{
-            conn = await pool.getConnection();
+           
             let row = await conn.query('SELECT * FROM login WHERE login=? and password=?',[login, password])
             .then((response)=>{
                 return response;
@@ -26,12 +27,13 @@ class DaoEmployee{
         }finally{
             console.log(` entrou no erro: finally`)
         }
-      
+        conn.end();
     }
     async getEmployeeForLogin(userId:number){
         let conn;
+        conn = await pool.getConnection();
         try{
-            conn = await pool.getConnection();
+           
             let row  = await conn.query('SELECT * FROM employee where userId=? ',[userId])
             .then((response)=>{
                 return response;
@@ -45,6 +47,7 @@ class DaoEmployee{
         }finally{
 
         }
+        conn.end();
     }
 
 }

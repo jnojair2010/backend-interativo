@@ -26,7 +26,6 @@ routesLogin.post('/login',validationLogin, (req:Request, res:Response)=>{
         if(Token?.token === false){
             res.status(401).end();
         } else{
-            
             res.send({"jwt_token":Token?.token});
         }
     })
