@@ -22,7 +22,7 @@ class daoProduto{
         }catch(error){
             console.log(` error: ${error}`)
         }finally{
-            console.log("entrou no finaly do getAllProduto")
+         
             conn.end()
         }
 
