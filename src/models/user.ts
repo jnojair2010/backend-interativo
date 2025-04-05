@@ -1,7 +1,8 @@
 import Address from "./address"; // Adress é endereço
+import convertNumber from "../utill/convertInNumber";
 
 class User extends Address{
-    private userId:string;
+    private userId:Number
     private userName:string;
     private userSobreName:string;
     private email:string;
@@ -9,7 +10,7 @@ class User extends Address{
 
     constructor(idAddress:string, userId:string, name:string, sobreName:string, email:string, cpf:string, logradouro:string, numero:string, bairro:string, cidade:string, uf:string, complemento:string){
         super(idAddress,logradouro, numero, bairro, cidade, uf, complemento);
-        this.userId = userId;
+        this.userId = convertNumber(userId)
         this.userName = name;
         this.userSobreName = sobreName;
         this.email = email;
@@ -33,7 +34,7 @@ class User extends Address{
     }
 
     set setUserid(id:string){
-        this.userId = id;
+        this.userId = convertNumber(id);
     }
     set setNome(nome:string){
         this.userName = nome;

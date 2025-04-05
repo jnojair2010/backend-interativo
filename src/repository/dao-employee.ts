@@ -1,3 +1,4 @@
+
 import Employee from '../models/employee/model-emploee';
 import pool from './databse';
 
@@ -5,18 +6,17 @@ import pool from './databse';
 class DaoEmployee{
     
 
-    async getDaoEmployee(login:string, password:string){
+    async getLogin(login:string, password:string){
 
-        let conn;
+        let conn = await pool.getConnection();
 
         try{
-            conn = await pool.getConnection();
-            let row = await conn.query('SELECT * FROM USER WHERE EMAIL=?',[login])
+            let row = await conn.query('SELECT * FROM login WHERE login=? and password=?',[login, password])
             .then((response)=>{
-                return response;
+                return response[0];
             })
             .then((respon)=>{
-                return respon[0]
+                return respon
             })
             
        return row;
@@ -25,9 +25,52 @@ class DaoEmployee{
             console.log(` entrou no erro: ${error}`)
         }finally{
             console.log(` entrou no erro: finally`)
+            conn.end()
         }
-      
+        conn.end();
     }
+    async getEmployeeForLogin(userId:number){
+        let conn;
+        conn = await pool.getConnection();
+        try{
+            conn = await pool.getConnection();
+            let row  = await conn.query('SELECT * FROM employee where userId=? ',[userId])
+            .then((response)=>{
+                return response[0];
+            }).then((respon)=>{
+            
+                return respon
+            })
+            return row;
+        }
+        catch(err){
+            console.log(` entrou no erro get employee for login: ${err}`)
+        }finally{
+            conn.end()
+        }
+        conn.end();
+    }
+    async getUserSystema(userId:number){
+        let conn;
+        conn = await pool.getConnection();
+        try{
+            console.log(" o id no esql é: "+userId)
+            let row  = await conn.query("select e.idEmployee, e.assignment, e.situation, e.idLogin, e.userId, u.userName, u.userSobreName, u.email, u.cpf from employee as e INNER JOIN user as u ON e.userId = u.userId where e.userId=?",[userId])
+            .then((response)=>{
+                return response[0];
+            }).then((respon)=>{
+            
+                return respon
+            })
+            return row;
+        }
+        catch(err){
+            console.log(` entrou no erro get employee for user system: ${err}`)
+        }finally{
+            conn.end()
+        }
+    }
+
 
 }
 

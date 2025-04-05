@@ -1,21 +1,23 @@
 import DaoEmployee from '../../repository/dao-employee';
 import Login from '../login';
 import User from '../user';
-
+import ServerEmployee from '../../servicos/serverEmpoyee'
 
 class Employee extends User{
 
-    private atribuicao!:string;
-    private situacao!:string;
-    private estadoDeLogin!:boolean;
+    private atribuicao:string;
+    private situacao:string;
+    private estadoDeLogin:boolean;
+    private codeJwt:string;
 
      mLogin = new Login("","","")
 
     constructor(
-        login:string,
-        password:string,
-        atribuicao:string,
+        situacao:string,
+        idAddress:string,
         estadoDeLogin:boolean,
+        codeJwt:string,
+        atribuicao:string,
         userId:string,
         userName:string,
         sobrenome:string,
@@ -28,7 +30,9 @@ class Employee extends User{
         uf:string,
         complemento:string){
 
-        super(userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
+        super(idAddress, userId, userName, sobrenome, email, cpf, logradouro, numero, bairro, cidade, uf, complemento);
+        this.codeJwt = codeJwt;
+        this.situacao = situacao;
         this.estadoDeLogin = estadoDeLogin;
         this.atribuicao = atribuicao;
     }
@@ -78,20 +82,45 @@ class Employee extends User{
 
     
 
-    async getEmployee(){
+    async getEmployee(loginIn:string, passwordReq:string){
         try{
-            const employee = DaoEmployee.prototype.getDaoEmployee("jnojair2010@gmail.com","Lwx5nk@Lwx5nk");
+            const employee = DaoEmployee.prototype.getLogin(loginIn, passwordReq);
             
-            let functionario = await employee.then((response)=>{
-                return response;
+            let login = await employee.then(async (response)=>{
+                let token
+
+                let employee = await DaoEmployee.prototype.getEmployeeForLogin(response['userId'])
+                    .then((response)=>{
+                        if(response['situation']===0) token = false;
+                        if(response['situation']===1) token = ServerEmployee.prototype.getGerarjwt(response['userId']);
+                        
+                    })
+                    console.log(`O token é: ${token}`);
+              return {token};
             })
-            return functionario;
+            return login;
         }catch(error){
             console.log(` entrou no erro: ${error}`)
         }finally{
             console.log(` entrou no erro: finally`)
         }
         
+    }
+    async getEmployeeId(id:number){
+        console.log("getEmployeeId e: "+id)
+            try{
+             const employee =  DaoEmployee.prototype.getUserSystema(id);
+                let user = await employee.then((response)=>{
+                
+                    return response;
+                })
+                return employee;
+            }
+        catch(error){
+            console.log(` entrou no erro: ${error}`)
+        }finally{
+            console.log(` entrou no erro: finally`)
+        }
     }
 
 
