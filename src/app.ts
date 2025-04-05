@@ -7,6 +7,7 @@ import routesSupplier from './routes/supllier'
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import routesCompany from './routes/router_company';
+import routerCaixa from './routes/router_caixa';
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ app.use(routesLogin);
 app.use(routesProduct);
 app.use(routesSupplier);
 app.use(routesCompany)
+app.use(routerCaixa);
 
 app.use(express.json())
 
