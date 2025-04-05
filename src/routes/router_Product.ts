@@ -7,15 +7,15 @@ const routes = Router();
 routes.get('/getProductDetails', (req, res)=>{
 
 });
-routes.post('/getAllproducto', validationGetAllProduto, (req, res)=>{
-
+routes.get('/getAllproducto', (req, res)=>{
+    let idCompany= req.query['idCompany'];
     const getAllproducto = daoProduto.prototype.getAllProduto();
 
     getAllproducto.then((listProdutos)=>{
 
         res.send(listProdutos);
     })
-
+      
 });
 routes.post('cadProduct', (req, res)=>{
 

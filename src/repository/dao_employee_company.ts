@@ -1,14 +1,13 @@
-
 import pool from './databse';
 
-class daoProduto{
+class EmployeeCompanyDao{
 
-    async getAllProduto(){
-       let conn = await pool.getConnection();
+    async getAllCompany(idEmployee:number){
+        const conn = await pool.getConnection();
 
         try{
-           
-            let rows = await conn.query("select * from producto",[])
+
+            let rows = await  conn.query("select e.idEmployee, e.idCompany,c.companyName, c.cnpj from employee_company as e inner join company as c on e.idCompany = c.idCompany where e.idEmployee =?",[idEmployee])
             .then((response)=>{
                 return response;
             })
@@ -24,8 +23,7 @@ class daoProduto{
             console.log("entrou no finaly do getAllProduto")
             conn.end()
         }
-        conn.end();
     }
-}
 
-export default daoProduto;
+}
+export default EmployeeCompanyDao;

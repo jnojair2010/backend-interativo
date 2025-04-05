@@ -6,6 +6,7 @@ import routesProduct from './routes/router_Product';
 import routesSupplier from './routes/supllier'
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import routesCompany from './routes/router_company';
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,7 @@ app.use(routesEmployee);
 app.use(routesLogin);
 app.use(routesProduct);
 app.use(routesSupplier);
+app.use(routesCompany)
 
 app.use(express.json())
 

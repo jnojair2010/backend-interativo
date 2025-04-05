@@ -15,19 +15,29 @@ export const createToken = (id:number)=>{
 }
 
 export const decodeToken = (codeJwt:string)=>{
-    const decode = jwtDecode<JwtPayload>(codeJwt)
+    try{
+        const decode = jwtDecode<JwtPayload>(codeJwt)
         let userId = decode['userId'];
-      return userId;
+         return userId;
+    }catch(error){
+        console.log("entrou no erro do verificar decodeToken")
+    }
 
 }
 
 export const verifyToken = (codeJwt:string)=>{
     let userId;
-    let statusSecret = jwt.verify(codeJwt,secret,  (err, decoded)=>{
-        userId = decodeToken(codeJwt);
-        if(decoded) decoded;
-
-    })
+    try{
+        let statusSecret = jwt.verify(codeJwt,secret,  (err, decoded)=>{
+            userId = decodeToken(codeJwt);
+            if(decoded) decoded;
+    
+        })
+    }
+    catch(error){
+        console.log("entrou no erro do verificar jwt_token"+error)
+    }
+    
     return userId;
 
 }
