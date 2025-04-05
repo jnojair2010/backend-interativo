@@ -5,7 +5,7 @@ import pool from "./databse";
     async createCaixaDao(idEmpoyee:number, dt:string){
         const conn = await pool.getConnection();
         try{
-            conn.query("insert into caixa (data, idEmployee) value (?,?) ",[dt,idEmpoyee])
+            conn.query("insert into caixa (data, idEmployee) value (?,?)",[dt,idEmpoyee])
 
         }catch(erro){
             console.log(` erro ao inserir o caixa`)
@@ -30,12 +30,31 @@ import pool from "./databse";
             conn.end()
         }
     }
+    async getCaixaForDay(dt:string){
+        const conn = await pool.getConnection();
+        try{
+            let row = await conn.query('select * from caixa where data=?',[dt])
+            .then((response)=>{
+                return  response;
+            })  
+
+            return row;
+
+        }catch(erro){
+
+        }finally{
+            conn.end()
+        }
+    }
 
     async salvarfundoTroco(valor:number, data:string, idCaixa:number){
         const conn = await pool.getConnection();
         try{
 
-
+            await conn.query('insert into fundotroco (valor, idCaixa, data) values (?,?,?)',[valor,idCaixa,data])
+            .then((response)=>{
+                return  response;
+            })  
 
         }catch(erro){
 

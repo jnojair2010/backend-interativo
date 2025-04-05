@@ -18,10 +18,8 @@ routerCaixa.post("/cadFundTroco",async (req, res)=>{
     let dia = dt.getDate();
     let data = `${ano}/${mes}/${dia}`;
 
-    ServiceCaixa.prototype.insertCaixa(idEmployee, data);
-        //DaoCaixa.prototype.salvarfundoTroco(fundoTrco, data, idDoCaixa)
+    ServiceCaixa.prototype.inserirFunTroco(idEmployee, data, fundoTrco);
 
-    console.log(` id employee: ${dia}`)
     res.send("fundo de troco");
 })
 routerCaixa.post("/cadSangria",(req, res)=>{

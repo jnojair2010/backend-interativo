@@ -1,4 +1,5 @@
 export interface Caixa{
-    data:string
+    idCaixa:number,
+    data:string,
     idEmployee:number
 }
